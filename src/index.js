@@ -1,17 +1,19 @@
 module.exports = function makeExchange(currency) {
-    if (currancy > 10000) {
+var result = {};
+var coins = ["H", "Q", "D", "N", "P"];
+var arr = [50, 25, 10, 5, 1];
+    if (currency>=10000){
         return {error: "You are rich, my friend! We don't have so much coins for exchange"};
     }
-    var currancies = {"H":1,"Q":1,"D":1,"N":1,"P":1};
-    var currentCurrency = currency;
-    var result = {};
-
-    for (var key in currencies) {
-        if (currentCurrency >= currancies[key]) {
-            var value = Math.floor(currentCurrency / currancies[key]);
-            result[key] = value;
-            currentCurrency -= value * currancies[key];
+        else if (currency<=0) {
+            return {};
         }
-    }
-    return result;
+        else {
+            for (let i = 0; i < arr.length; i++){
+                if (Math.floor(currency/arr[i]) > 0){
+                    result[coins[i]] = Math.floor(currency/arr[i]);
+                    currency -= arr[i] * Math.floor(currency/arr[i]);}
+                    }
+            }
+            return result;
 }
